@@ -1,5 +1,4 @@
 from screen import *
-from screen import Screen
 
 
 class Fighter(Screen):
@@ -36,6 +35,9 @@ class Fighter(Screen):
         self.rect = self.image.get_rect()
 
     def draw_fighter(self):
+        """
+        Method draws the created fighter on the screen.
+        """
         self.rect.center = (self.x+self.offset, self.y)
         if self.orientation == 'Right':
             self.screen.blit(self.image, self.rect)
@@ -43,6 +45,9 @@ class Fighter(Screen):
             self.screen.blit(pygame.transform.flip(self.image, True, False), self.rect)
 
     def update(self):
+        """
+        Method updates the animation of the fighter that's drawn on thee screen.
+        """
         animation_cooldown = 100
         # Handle animation
         # Update the image

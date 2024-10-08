@@ -21,7 +21,8 @@ while is_running:
     screen.screen.fill((0, 0, 0))
     screen.draw_bg(x=0, y=0, offset_mid=screen.bg_img_mid_offset,
                    offset_back=screen.bg_img_back_offset,
-                   offset_front=screen.bg_img_front_offset)
+                   offset_front=screen.bg_img_front_offset,
+                   offset_ground=screen.bg_img_ground_offset)
     screen.handle_parallax()
     screen.draw_panel(x=0, y=SCREEN_HEIGHT - BOT_PANEL_HEIGHT)
     screen.draw_health_bar(x=BOT_PANEL_HEIGHT / 2 - 23, y=SCREEN_HEIGHT - BOT_PANEL_HEIGHT + 19, fighter=knight)
