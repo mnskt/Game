@@ -6,19 +6,19 @@ class Fighter(Screen):
 
     animations = {
         'Idle': 7,
+        'Run': 9,
         'Attack': 7,
-        'Hurt': 2,
-        'Death': 9
     }
     cls_frame_list =[]
     cls_action = 0
 
     def __init__(self, x: float, y: int, offset: int, name: str, max_hp: int, img_folder_name: str, tile_set: bool):
         super().__init__()
+        self.tile_set = tile_set
+        self.animation_list = []
         if tile_set:
             parse = ParseTileSet(frame_height=80, img_folder_name=img_folder_name)
             self.animation_list = parse.create_frame_list()
-        self.cls_frame_list = self.animation_list
         self.name = name
         self.max_hp = max_hp
         self.hp = max_hp
@@ -37,6 +37,7 @@ class Fighter(Screen):
                     img = pygame.transform.scale(img, (img.get_width() * 3, img.get_height() * 3))
                     temp_img_list.append(img)
                 self.animation_list.append(temp_img_list)
+        self.cls_frame_list = self.animation_list
         self.image = self.animation_list[self.action][self.frame_index]
 
         self.image = self.animation_list[self.action][self.frame_index]
@@ -47,7 +48,8 @@ class Fighter(Screen):
         Method draws the created fighter on the screen.
         """
         self.rect.center = (self.x+self.offset, self.y)
-        self.image = pygame.transform.scale(self.image, (self.image.get_width() * 2, self.image.get_height() * 2))
+        if self.tile_set:
+            self.image = pygame.transform.scale(self.image, (self.image.get_width() * 2, self.image.get_height() * 2))
         if self.orientation == 'Right':
             self.screen.blit(self.image, self.rect)
         elif self.orientation == 'Left':
