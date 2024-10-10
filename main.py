@@ -7,7 +7,7 @@ ENEMY_INIT_LOC = 750
 f_hit = False
 
 screen = Screen()
-knight = Fighter(x=200, y=320, offset=0, name='Knight', max_hp=30)
+knight = Fighter(x=200, y=307, offset=0, name='Knight', max_hp=30, img_folder_name='Warrior', tile_set=True)
 # enemy_1 = Fighter(x=ENEMY_INIT_LOC, offset=0, y=330, name='Bandit', max_hp=15, strength=5, potions=1)
 # enemy_2 = Fighter(x=int(ENEMY_INIT_LOC-enemy_1.image.get_width()/1.5),
 #                   offset=0, y=330, name='Bandit', max_hp=15, strength=5, potions=1)

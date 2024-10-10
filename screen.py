@@ -158,33 +158,45 @@ class Screen(Setup):
         :param f_hit: Check if "F" key was hit.
         :param is_running: Variable for determining main loop status.
         """
+
         if keys[pygame.K_ESCAPE]:
             is_running = False
-        if keys[pygame.K_d]:
+        if keys[pygame.K_d] and not f_hit:
             knight.orientation = 'Right'
+            knight.action = 1
             self.bg_img_mid_offset -= 0.4 * SPEED
             self.bg_img_back_offset -= 0.2 * SPEED
             self.bg_img_front_offset -= 0.6 * SPEED
             self.bg_img_ground_offset -= 0.8 * SPEED
-        elif keys[pygame.K_a]:
+            movement_key_hit = True
+        elif keys[pygame.K_a] and not f_hit:
             knight.orientation = 'Left'
+            knight.action = 1
             self.bg_img_mid_offset += 0.4 * SPEED
             self.bg_img_back_offset += 0.2 * SPEED
             self.bg_img_front_offset += 0.6 * SPEED
             self.bg_img_ground_offset += 0.8 * SPEED
+            movement_key_hit = True
+        else:
+            movement_key_hit = False
 
         if keys[pygame.K_SPACE]:
             if self.att_anim_counter == 0:
-                knight.action = 1
+                knight.action = 2
                 knight.frame_index = 0
                 f_hit = True
-        if self.att_anim_counter >= 40:
+        if self.att_anim_counter >= 20:
             self.att_anim_counter = 0
             knight.action = 0
             knight.frame_index = 0
             f_hit = False
         if f_hit:
             self.att_anim_counter += 1
+
+        if not movement_key_hit and not f_hit:
+            knight.action = 0
+            if knight.frame_index >= len(knight.animation_list[knight.action]):
+                knight.frame_index = 0
         return f_hit, is_running
 
     def handle_parallax(self):
