@@ -15,7 +15,6 @@ knight = Fighter(x=200, y=307, offset=0, name='Knight', max_hp=30, img_folder_na
 # enemy_list = [enemy_1, enemy_2]
 
 is_running = True
-i = 0
 while is_running:
     screen.clock.tick(FPS)
     screen.screen.fill((0, 0, 0))
